@@ -23,4 +23,14 @@ router.get('/createUsersDetailsTable', (req, res) => {
     });
 });
 
+router.get('/create-transactions-table', (req, res) => {
+    let sql_creation = `create table transactions(tr_id VARCHAR(255) NOT NULL ,tr_username VARCHAR(255),tr_type VARCHAR(255), tr_amount INT,created_time DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,PRIMARY KEY(tr_id))`;
+    db.query(sql_creation, (err, result) => {
+        if (err) {
+            console.log(err);
+            return res.status(500).json(err);
+        }
+        res.status(200).json("table created successfully transaction");
+    })
+})
 module.exports = router;
