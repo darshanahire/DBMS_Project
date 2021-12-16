@@ -39,6 +39,13 @@ router.post('/login', async (req, res) => {
     })
 })
 
+router.get("/user", async (req, res) => {
+    const username = res.locals.username;
+    const sql_query = "SELECT * FROM usersDetails WHERE username='"+username+"'";
+    db.query(sql_query, {}, (err, data) => {
+        res.status(200).json(data);
+    })
+})
 router.get("/all", async (req, res) => {
     const sql_query = "SELECT * FROM usersDetails";
     db.query(sql_query, {}, (err, data) => {

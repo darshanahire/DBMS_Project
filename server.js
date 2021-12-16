@@ -16,7 +16,7 @@ const userRoute = require("./routes/userRoute")
 const transaction = require("./routes/transactions")
 app.use("/api", dbRoutes);
 app.use("/api/user", userRoute);
-app.use("/api/tr", verify, transaction);
+app.use("/api/tr", transaction);
 
 
 app.listen(port, () => {

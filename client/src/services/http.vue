@@ -18,11 +18,11 @@ export default {
     return data;
   },
   async DepositMoney(payload) {
-    let { data }=await axios.post(this.baseUrl + "/deposit", payload);
+    let { data }=await axios.post(this.baseUrl + "tr/deposit", payload);
     return data;
   },
   async WithdrowMoney(payload) {
-    let { data }=await axios.post(this.baseUrl + "/withdraw", payload);
+    let { data }=await axios.post(this.baseUrl + "tr/withdraw", payload);
     return data;
   },
   async GetCurrBal() {

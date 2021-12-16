@@ -5,7 +5,7 @@
         <div class="row text-center">
           <div class="col-12 col-md-2 align-items-center">
             <img
-              src="@/assets/logo.png"
+              src="@/assets/avatar.png"
               class="img-fluid rounded-circle border"
               width="100px"
               alt="user"
@@ -171,6 +171,8 @@ export default {
         .catch((err) => {
           console.log(err);
         });
+
+      http.GetUserData()
   }
 };
 </script>

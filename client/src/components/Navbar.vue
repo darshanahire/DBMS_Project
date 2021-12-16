@@ -47,6 +47,8 @@ export default {
 }
 .navbar {
   background-color: #ffffff;
+  box-shadow: 0px 2px 17px -7px;
+  height: 60px;
 }
 
 .nav-link {
