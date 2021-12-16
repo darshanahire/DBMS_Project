@@ -2,7 +2,7 @@
   <nav class="navbar navbar-expand-lg navbar-light">
     <router-link to="/">
       <a class="navbar-brand p-3">
-        <img src="@/assets/logo.png" alt="GrowPartner" width="40px" />
+        <img src="@/assets/logo.png" width="40px" />
       </a>
     </router-link>
     <button
