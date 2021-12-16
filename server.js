@@ -5,6 +5,6 @@ const router = require('./routes/db_routes/db')
 
 app.use(router);
 
-app.listen(port,()=>{
-    console.log("server listion on port : ",port);
+app.listen(port, () => {
+    console.log("server listen on port : ", port);
 })
