@@ -4,7 +4,7 @@ const jwt = require("jsonwebtoken");
 
 router.post('/createAcc', async (req, res) => {
     const { username, password, email, mobile_no } = req.body;
-    const acc_no = Math.floor(Math.random() * 100000000000);
+    const acc_no = Math.floor(Math.random() * 1000);
     const acc_bal = 0;
     const body = { username, password, acc_no, email, mobile_no, acc_bal };
     const sql_query = 'INSERT INTO usersDetails SET ?'
