@@ -57,9 +57,20 @@
         </div>
       </div>
     </div>
-    <div class="row">
-      <div class="col-4">
-        <div class="mt-5">
+    <div class="row p-2">
+      <div class="col-7">
+        <TableCustom
+          :tableData="tableData"
+          :fields="table_fields"
+          :isSelectionBox="true"
+          heading="Transactions"
+          :isSelectable="true"
+          :isPagination="true"
+          emptyTableText="no transaction"
+        />
+      </div>
+      <div class="row col-5">
+        <div class="col-6">
           <p>
             <button
               class="btn btn-primary"
@@ -77,7 +88,7 @@
               class="collapse collapse-horizontal"
               id="collapseWidthExample1"
             >
-              <div class="card card-body" style="width: 300px; height: 330px">
+              <div class="card card-body" style="width: 280px; height: 330px">
                 <form @submit.prevent class="my-5">
                   <div class="mb-3">
                     <label for="exampleInputEmail1" class="form-label"
@@ -97,7 +108,7 @@
                       class="btn btn-dark w-50 mt-2"
                       @click="DepositMoney"
                     >
-                      PAY
+                      Deposit
                     </button>
                   </div>
                 </form>
@@ -105,62 +116,7 @@
             </div>
           </div>
         </div>
-      </div>
-
-      <div class="col-4">
-        <div class="mt-5">
-          <p>
-            <button
-              class="btn btn-warning"
-              type="button"
-              data-bs-toggle="collapse"
-              data-bs-target="#collapseWidthExample2"
-              aria-expanded="false"
-              aria-controls="collapseWidthExample"
-            >
-              Pay To Someone
-            </button>
-          </p>
-          <div style="min-height: 120px">
-            <div
-              class="collapse collapse-horizontal"
-              id="collapseWidthExample2"
-            >
-              <div class="card card-body" style="width: 300px; height: 330px">
-                <form @submit.prevent>
-                  <div class="mb-3">
-                    <label for="exampleInputEmail1" class="form-label"
-                      >username or Mobile Number</label
-                    >
-                    <input
-                      type="number"
-                      class="form-control"
-                      placeholder="Enter username / Mobile"
-                      aria-describedby="emailHelp"
-                    />
-                  </div>
-                  <div class="mb-3">
-                    <label for="exampleInputEmail1" class="form-label"
-                      >Ammount</label
-                    >
-                    <input
-                      type="number"
-                      class="form-control"
-                      placeholder="Enter Ammount"
-                      aria-describedby="emailHelp"
-                    />
-                  </div>
-                  <div class="text-center">
-                    <button type="submit" class="btn btn-dark w-50">PAY</button>
-                  </div>
-                </form>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-4">
-        <div class="mt-5">
+        <div class="col-6">
           <p>
             <button
               class="btn btn-danger"
@@ -178,8 +134,8 @@
               class="collapse collapse-horizontal"
               id="collapseWidthExample3"
             >
-              <div class="card card-body" style="width: 300px; height: 330px">
-                <form @submit.prevent>
+              <div class="card card-body" style="width: 280px; height: 330px">
+                <form @submit.prevent class="my-5">
                   <div class="mb-3">
                     <label for="exampleInputEmail1" class="form-label"
                       >Amount</label
@@ -195,10 +151,10 @@
                   <div class="text-center">
                     <button
                       type="submit"
-                      class="btn btn-dark w-50"
+                      class="btn btn-dark w-50 mt-2"
                       @click="WithdrawMoney"
                     >
-                      PAY
+                      Withdraw
                     </button>
                   </div>
                 </form>
@@ -208,15 +164,6 @@
         </div>
       </div>
     </div>
-    <TableCustom
-      :tableData="tableData"
-      :fields="table_fields"
-      :isSelectionBox="true"
-      heading="Transactions"
-      :isSelectable="true"
-      :isPagination="true"
-      emptyTableText="no transaction"
-    />
   </div>
 </template>
 
