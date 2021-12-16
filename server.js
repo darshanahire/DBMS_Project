@@ -14,9 +14,11 @@ const verify = require("./middleware/verify");
 const dbRoutes = require('./routes/dbRoute')
 const userRoute = require("./routes/userRoute")
 const transaction = require("./routes/transactions")
-app.use("/api", dbRoutes);
+const UserMe = require("./routes/me");
 app.use("/api/user", userRoute);
-app.use("/api/tr", transaction);
+app.use("/api/tr", verify, transaction);
+app.use("/api/auth", verify, UserMe);
+app.use("/api", dbRoutes);
 
 
 app.listen(port, () => {

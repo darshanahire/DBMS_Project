@@ -11,22 +11,22 @@ export default {
     return axios.post(this.baseUrl + "/user/login", payload);
   },
   async CreateUser(payload) {
-    return axios.post(this.baseUrl + "/createAcc", payload);
+    return axios.post(this.baseUrl + "/user/createAcc", payload);
   },
   async GetUserData(payload) {
-    let { data } = await axios.get(this.baseUrl + "/user", payload);
+    let { data } = await axios.get(this.baseUrl + "/auth/me", payload);
     return data;
   },
   async DepositMoney(payload) {
-    let { data }=await axios.post(this.baseUrl + "tr/deposit", payload);
+    let { data } = await axios.post(this.baseUrl + "/tr/deposit", payload);
     return data;
   },
-  async WithdrowMoney(payload) {
-    let { data }=await axios.post(this.baseUrl + "tr/withdraw", payload);
+  async WithdrawMoney(payload) {
+    let { data } = await axios.post(this.baseUrl + "/tr/withdraw", payload);
     return data;
   },
   async GetCurrBal() {
-    let { data }=await axios.get(this.baseUrl + "/current-balance");
+    let { data } = await axios.get(this.baseUrl + "/tr/current-balance");
     return data;
   },
 };
