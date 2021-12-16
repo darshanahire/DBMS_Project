@@ -13,5 +13,9 @@ export default {
   async CreateUser(payload) {
     return axios.post(this.baseUrl + "/createAcc", payload);
   },
+  async GetUserData(payload) {
+    let { data } = await axios.get(this.baseUrl + "/user", payload);
+    return data;
+  },
 };
 </script>

@@ -25,12 +25,10 @@
           <router-link to="/login" class="nav-link">Login</router-link>
         </li>
         <li class="nav-item mx-3">
-          <router-link to="/features" class="nav-link">Feature</router-link>
+          <router-link to="/user" class="nav-link">User</router-link>
         </li>
         <li class="nav-item mx-3">
-          <router-link to="/marketplace" class="nav-link"
-            >MarketPlace</router-link
-          >
+          <router-link to="/bank" class="nav-link">Bank</router-link>
         </li>
       </ul>
     </div>
