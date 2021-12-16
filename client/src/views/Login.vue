@@ -9,7 +9,7 @@
     <button @click="loginUser">Login User</button>
     <button @click="loginBank">Login Bank</button>
     <br />
-    <a href="">create account</a>
+    <a href="/create">create account</a>
   </div>
 </template>
 

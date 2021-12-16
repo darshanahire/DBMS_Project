@@ -3,13 +3,15 @@ import axios from "axios";
 
 export default {
   name: "http",
-  baseUrl: "",
+  baseUrl: "http://localhost:5000",
   async loginAsBank(payload) {
-    return await axios.post(this.baseUrl + "/login/bank", payload);
+    return axios.post(this.baseUrl + "/login/bank", payload);
   },
-
   async loginAsUser(payload) {
-    return await axios.post(this.baseUrl + "/login/user", payload);
+    return axios.post(this.baseUrl + "/login/user", payload);
+  },
+  async CreateUser(payload) {
+    return axios.post(this.baseUrl + "/createAcc", payload);
   },
 };
 </script>
