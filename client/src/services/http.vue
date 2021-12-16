@@ -17,5 +17,17 @@ export default {
     let { data } = await axios.get(this.baseUrl + "/user", payload);
     return data;
   },
+  async DepositMoney(payload) {
+    let { data }=await axios.post(this.baseUrl + "/deposit", payload);
+    return data;
+  },
+  async WithdrowMoney(payload) {
+    let { data }=await axios.post(this.baseUrl + "/withdraw", payload);
+    return data;
+  },
+  async GetCurrBal() {
+    let { data }=await axios.get(this.baseUrl + "/current-balance");
+    return data;
+  },
 };
 </script>

@@ -2,12 +2,12 @@
   <div class="container-fluid">
     <div class="d-flex justify-content-center align-items-center h-100">
       <div class="loginParent mx-5">
-        <form>
+        <form  @submit.prevent>
           <h3 class="text-center">Login</h3>
           <div class="mb-3">
             <label for="exampleInputEmail1" class="form-label">Username</label>
             <input
-              type="email"
+              type="text"
               class="form-control inputField"
               id="exampleInputEmail1"
               v-model="username"
@@ -26,12 +26,12 @@
               autocomplete="off"
             />
           </div>
-          <button type="submit" class="btn btn-dark">
-            <a class="link" href="/create">create account</a>
-          </button>
-          <div>
-            <button @click="loginUser">Login User</button>
-            <button @click="loginBank">Login Bank</button>
+          <div class="d-flex justify-content-around align-items-center mt-4">
+            <button class="btn btn-dark" @click="loginUser">User Login</button>
+            <button class="btn btn-dark" @click="loginBank">Bank Login</button>
+          </div>
+          <div class="text-center mt-3">
+            <a href="/create">New User create account</a>
           </div>
         </form>
 
@@ -76,7 +76,11 @@ export default {
           password: this.password,
         })
         .then((data) => {
+          localStorage.setItem("token",data.data.jwt)
           console.log(data.data);
+          alert("Login SuccessFul")
+          this.username="";
+          this.password="";
         })
         .catch((err) => {
           console.log(err);
@@ -99,9 +103,11 @@ export default {
 };
 </script>
 <style>
+body{
+  background: #f1f1f1 !important;
+}
 .container-fluid {
-  background: #f1f1f1;
-  height: 90vh;
+  height: 80vh;
 }
 .loginParent {
   display: flex;
@@ -109,8 +115,9 @@ export default {
   justify-content: center;
   background: white;
   align-items: center;
-  padding: 40px;
+  padding: 30px;
   border-radius: 15px;
+  width: 450px;
 }
 .inputField {
   box-shadow: none !important;
@@ -119,5 +126,8 @@ export default {
 .link {
   color: white !important;
   text-decoration: none;
+}
+form {
+  width: 300px;
 }
 </style>
