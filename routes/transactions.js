@@ -76,4 +76,14 @@ router.get("/current-balance", (req, res) => {
     })
 })
 
+router.get("/user/all", (req, res) => {
+    const username = res.locals.username;
+    const sqlQueryFind = `select * from transactions where tr_username="${username}";`
+    db.query(sqlQueryFind, (err, result) => {
+        if (err)
+            return res.status(500).json(err);
+        res.status(200).json(result);
+    })
+})
+
 module.exports = router;

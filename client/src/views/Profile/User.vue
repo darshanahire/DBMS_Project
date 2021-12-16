@@ -208,15 +208,29 @@
         </div>
       </div>
     </div>
+    <TableCustom
+      :tableData="tableData"
+      :fields="table_fields"
+      :isSelectionBox="true"
+      heading="Transactions"
+      :isSelectable="true"
+      :isPagination="true"
+      emptyTableText="no transaction"
+    />
   </div>
 </template>
 
 <script>
 import http from "@/services/http.vue";
+import TableCustom from "../../components/TableCustom.vue";
 export default {
   name: "UserProfile",
+  components: {
+    TableCustom,
+  },
   async mounted() {
     this.userDetails = await http.GetUserData({});
+    this.tableData = await http.GetUserTransactions();
     this.currBal = this.userDetails.acc_bal;
   },
   data() {
@@ -226,6 +240,23 @@ export default {
       withdrawAmount: 0,
       password: "",
       currBal: 0,
+
+      table_fields: [
+        { label: "Transaction ID", key: "tr_id" },
+        {
+          label: "Transaction Type",
+          key: "tr_type",
+        },
+        {
+          label: "Transaction Amount",
+          key: "tr_amount",
+        },
+        {
+          label: "Date",
+          key: "created_time",
+        },
+      ],
+      tableData: [],
     };
   },
   methods: {
