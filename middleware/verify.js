@@ -2,7 +2,7 @@
 const jwt = require("jsonwebtoken")
 
 const verify = (req, res, next) => {
-    let accessToken = req.body.token;
+    let accessToken = req.headers.authorization;
     if (!accessToken) {
         return res.status(403).send()
     }
@@ -12,14 +12,13 @@ const verify = (req, res, next) => {
         let payload = jwt.verify(accessToken, process.env.ACCESS_TOKEN_SECRET)
         console.log(payload);
         res.locals.username = payload.username;
-        res.locals.id = payload.id;
         console.log("user verified succefully");
         next()
     }
     catch (e) {
         //if an error occured return request unauthorized error
         console.log("user verification is fail");
-        res.locals.currentuser = null;
+        res.locals.username = null;
         return res.status(401).send()
     }
 }
