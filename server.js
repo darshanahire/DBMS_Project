@@ -15,10 +15,13 @@ const dbRoutes = require('./routes/dbRoute')
 const userRoute = require("./routes/userRoute")
 const transaction = require("./routes/transactions")
 const UserMe = require("./routes/me");
-app.use("/api/user", userRoute);
+const ManagerRoute = require("./routes/Manager");
 app.use("/api/tr", verify, transaction);
 app.use("/api/auth", verify, UserMe);
+app.use("/api/manager", verify, ManagerRoute);
+app.use("/api/user", userRoute);
 app.use("/api", dbRoutes);
+
 
 
 app.listen(port, () => {

@@ -33,4 +33,13 @@ router.get('/create-transactions-table', (req, res) => {
         res.status(200).json("table created successfully transaction");
     })
 })
+
+router.get('/create-manager-table', (req, res) => {
+    let sql_creations = 'create table manager (mr_id VARCHAR(255) NOT NULL , mr_username VARCHAR(255),mr_password VARCHAR(255))'
+    db.query(sql_creations, (err, result) => {
+        if (err)
+            return res.status(500).json(err);
+        res.status(200).json("manager table created");
+    })
+})
 module.exports = router;

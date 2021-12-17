@@ -1,4 +1,4 @@
-const { Router, response } = require("express");
+const { Router } = require("express");
 const router = Router();
 const { AddTransaction, isInSufficientBalance } = require("../helpers/AddTransaction");
 const db = require("../db/conn");
