@@ -9,6 +9,7 @@ router.post('/createAcc', async (req, res) => {
     const acc_no = Math.floor(Math.random() * 1000);
     const acc_bal = 0;
     const body = { username, password, acc_no, email, mobile_no, acc_bal };
+    console.log(body);
     const sql_query = 'INSERT INTO usersDetails SET ?'
     db.query(sql_query, body, (err, result) => {
         if (err)

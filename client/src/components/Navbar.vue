@@ -24,12 +24,12 @@
         <li class="nav-item mx-3">
           <router-link to="/login" class="nav-link">Login</router-link>
         </li>
-        <li class="nav-item mx-3">
+        <!-- <li class="nav-item mx-3">
           <router-link to="/user" class="nav-link">User</router-link>
         </li>
         <li class="nav-item mx-3">
           <router-link to="/bank" class="nav-link">Bank</router-link>
-        </li>
+        </li> -->
       </ul>
     </div>
   </nav>
@@ -38,6 +38,9 @@
 <script>
 export default {
   name: "Navbar",
+  data() {
+    return {};
+  },
 };
 </script>
 

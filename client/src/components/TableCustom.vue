@@ -37,6 +37,11 @@
               </b-form-checkbox>
             </b-form-group>
           </template>
+          <template #cell(delete)="row">
+            <button class="btn btn-danger" @click="deleteUser(row.item)">
+              Delete
+            </button>
+          </template>
         </b-table>
         <b-pagination
           v-if="isPagination"
@@ -53,6 +58,7 @@
 </template>
 
 <script>
+import http from "../services/http.vue";
 export default {
   name: "tableCustom",
   props: {
@@ -85,6 +91,18 @@ export default {
       } else {
         this.$refs.customTable.unselectRow(row.index);
       }
+    },
+    async deleteUser(user) {
+      console.log(user);
+      http
+        .DeleteUser(user)
+        .then((data) => {
+          alert("user deleted");
+          this.$router.go();
+        })
+        .catch((err) => {
+          alert("user deletion failed");
+        });
     },
   },
   computed: {
@@ -120,6 +138,5 @@ export default {
 .multiselect__option {
   width: 100% !important;
 }
-
 </style>
  

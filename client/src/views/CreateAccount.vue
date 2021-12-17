@@ -11,10 +11,10 @@
     <input type="email" v-model="email" />
     <button @click="CreateUser">Create</button>
   </div> -->
-   <div class="container-fluid">
+  <div class="container-fluid">
     <div class="d-flex justify-content-center align-items-center h-100">
       <div class="loginParent mx-5">
-        <form  @submit.prevent>
+        <form @submit.prevent>
           <h3 class="text-center mb-3">Create Account</h3>
           <div class="mb-3">
             <label for="exampleInputEmail1" class="form-label">Username</label>
@@ -59,13 +59,14 @@
             />
           </div>
           <div class="d-flex justify-content-between align-items-center mt-4">
-            <button class="btn btn-dark w-50 mx-auto" @click="CreateUser">Create Account</button>
+            <button class="btn btn-dark w-50 mx-auto" @click="CreateUser">
+              Create Account
+            </button>
           </div>
         </form>
-
       </div>
     </div>
-  </div> 
+  </div>
 </template>
 
 <script>
@@ -85,11 +86,12 @@ export default {
         username: this.username,
         password: this.password,
         email: this.email,
-        mobile_no: this.mobile,
+        mobile_no: this.mobile_no,
       };
       http
         .CreateUser(payload)
         .then((data) => {
+          this.$router.push({ path: "/login" });
           console.log(data);
         })
         .catch((err) => {

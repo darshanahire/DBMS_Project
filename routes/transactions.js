@@ -86,4 +86,21 @@ router.get("/user/all", (req, res) => {
     })
 })
 
+router.get("/manager/all", (req, res) => {
+    const sqlQueryFind = `select * from transactions`
+    db.query(sqlQueryFind, (err, result) => {
+        if (err)
+            return res.status(500).json(err);
+        res.status(200).json(result);
+    })
+})
+
+router.get("/manager/all/count", (req, res) => {
+    const sqlQuery = "select count(*) from transactions";
+    db.query(sqlQueryFind, (err, result) => {
+        if (err)
+            return res.status(500).json(err);
+        res.status(200).json(result);
+    })
+})
 module.exports = router;

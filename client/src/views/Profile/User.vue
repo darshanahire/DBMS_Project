@@ -238,6 +238,11 @@ export default {
     this.tableData = await http.GetUserTransactions();
     this.currBal = this.userDetails.acc_bal;
   },
+  async created() {
+    this.userDetails = await http.GetUserData({});
+    this.tableData = await http.GetUserTransactions();
+    this.currBal = this.userDetails.acc_bal;
+  },
   data() {
     return {
       userDetails: {},
@@ -269,7 +274,7 @@ export default {
       let payload = { depositAmount: this.depositAmount };
       http
         .DepositMoney(payload)
-        .then(async(data) => {
+        .then(async (data) => {
           this.userDetails = await http.GetUserData({});
           this.tableData = await http.GetUserTransactions();
           this.currBal = this.userDetails.acc_bal;
@@ -284,7 +289,7 @@ export default {
       let payload = { withdrawAmount: this.withdrawAmount };
       http
         .WithdrawMoney(payload)
-        .then(async(data) => {
+        .then(async (data) => {
           this.userDetails = await http.GetUserData({});
           this.tableData = await http.GetUserTransactions();
           this.currBal = this.userDetails.acc_bal;

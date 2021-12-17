@@ -2,7 +2,7 @@
   <div class="container-fluid">
     <div class="d-flex justify-content-center align-items-center h-100">
       <div class="loginParent mx-5">
-        <form  @submit.prevent>
+        <form @submit.prevent>
           <h3 class="text-center">Login</h3>
           <div class="mb-3">
             <label for="exampleInputEmail1" class="form-label">Username</label>
@@ -31,7 +31,7 @@
             <button class="btn btn-dark" @click="loginBank">Bank Login</button>
           </div>
           <div class="text-center mt-3">
-            <a href="/create">New User create account</a>
+            <a href="/create" class="custom-link">New User create account</a>
           </div>
         </form>
 
@@ -76,11 +76,11 @@ export default {
           password: this.password,
         })
         .then((data) => {
-          localStorage.setItem("token",data.data.jwt)
-          console.log(data.data);
-          alert("Login SuccessFul")
-          this.username="";
-          this.password="";
+          localStorage.setItem("token", data.data.jwt);
+          localStorage.setItem("type", "user");
+          this.$router.push({ path: "/user" });
+          this.username = "";
+          this.password = "";
         })
         .catch((err) => {
           console.log(err);
@@ -93,17 +93,21 @@ export default {
           password: this.password,
         })
         .then((data) => {
-          console.log(data.data);
+          localStorage.setItem("token", data.data.jwt);
+          localStorage.setItem("type", data.data.type);
+          this.$router.push({ path: "/bank" });
+          this.username = "";
+          this.password = "";
         })
         .catch((err) => {
-          console.log(err);
+          alert("Username and Password Incorrect");
         });
     },
   },
 };
 </script>
 <style>
-body{
+body {
   background: #f1f1f1 !important;
 }
 .container-fluid {
@@ -125,6 +129,10 @@ body{
 }
 .link {
   color: white !important;
+  text-decoration: none;
+}
+.custom-link {
+  color: gray;
   text-decoration: none;
 }
 form {
