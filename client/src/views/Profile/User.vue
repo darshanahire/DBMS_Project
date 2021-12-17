@@ -58,110 +58,168 @@
       </div>
     </div>
     <div class="row p-2">
-      <div class="col-7">
-        <TableCustom
-          :tableData="tableData"
-          :fields="table_fields"
-          :isSelectionBox="true"
-          heading="Transactions"
-          :isSelectable="true"
-          :isPagination="true"
-          emptyTableText="no transaction"
-        />
-      </div>
-      <div class="row col-5">
-        <div class="col-6">
-          <p>
+      <div
+        class="
+          col-4
+          d-flex
+          justify-content-around
+          flex-column
+          align-items-center
+        "
+      >
+        <div class="">
+          <div>
             <button
-              class="btn btn-primary"
               type="button"
-              data-bs-toggle="collapse"
-              data-bs-target="#collapseWidthExample1"
-              aria-expanded="false"
-              aria-controls="collapseWidthExample"
+              class="btn btn-primary moneyBtn"
+              data-bs-toggle="modal"
+              data-bs-target="#exampleModal"
             >
               Deposit Money
             </button>
-          </p>
-          <div style="min-height: 120px">
-            <div
-              class="collapse collapse-horizontal"
-              id="collapseWidthExample1"
-            >
-              <div class="card card-body" style="width: 280px; height: 330px">
-                <form @submit.prevent class="my-5">
-                  <div class="mb-3">
-                    <label for="exampleInputEmail1" class="form-label"
-                      >Amount</label
-                    >
-                    <input
-                      type="number"
-                      class="form-control"
-                      placeholder="Enter Ammount"
-                      aria-describedby="emailHelp"
-                      v-model="depositAmount"
-                    />
-                  </div>
-                  <div class="text-center">
-                    <button
-                      type="submit"
-                      class="btn btn-dark w-50 mt-2"
-                      @click="DepositMoney"
-                    >
-                      Deposit
-                    </button>
-                  </div>
-                </form>
+          </div>
+
+          <!-- Modal -->
+          <div
+            class="modal fade"
+            id="exampleModal"
+            tabindex="-1"
+            aria-labelledby="exampleModalLabel"
+            aria-hidden="true"
+          >
+            <div class="modal-dialog modal-dialog-centered">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">
+                    Deposit Money
+                  </h5>
+                  <button
+                    type="button"
+                    class="btn-close"
+                    data-bs-dismiss="modal"
+                    aria-label="Close"
+                  ></button>
+                </div>
+                <div class="modal-body d-flex justify-content-center">
+                  <form @submit.prevent class="">
+                    <div class="mb-3">
+                      <label for="exampleInputEmail1" class="form-label">
+                        Enter Amount to Deposite</label
+                      >
+                      <input
+                        type="number"
+                        class="form-control"
+                        placeholder="Enter Ammount"
+                        aria-describedby="emailHelp"
+                        v-model="depositAmount"
+                      />
+                    </div>
+                  </form>
+                </div>
+                <div class="modal-footer d-flex justify-content-center">
+                  <button
+                    type="button"
+                    class="btn btn-danger"
+                    data-bs-dismiss="modal"
+                  >
+                    Cancel
+                  </button>
+                  <button
+                    type="submit"
+                    class="btn btn-primary"
+                    data-bs-dismiss="modal"
+                    @click="DepositMoney"
+                  >
+                    Deposit
+                  </button>
+                </div>
               </div>
             </div>
           </div>
         </div>
-        <div class="col-6">
-          <p>
-            <button
-              class="btn btn-danger"
-              type="button"
-              data-bs-toggle="collapse"
-              data-bs-target="#collapseWidthExample3"
-              aria-expanded="false"
-              aria-controls="collapseWidthExample"
-            >
-              Withdraw Money
-            </button>
-          </p>
-          <div style="min-height: 120px">
+        <div class="">
+          <div>
+            <div>
+              <button
+                type="button"
+                class="btn btn-warning moneyBtn"
+                data-bs-toggle="modal"
+                data-bs-target="#exampleModal1"
+              >
+                Withdraw Money
+              </button>
+            </div>
+
+            <!-- Modal -->
             <div
-              class="collapse collapse-horizontal"
-              id="collapseWidthExample3"
+              class="modal fade"
+              id="exampleModal1"
+              tabindex="-1"
+              aria-labelledby="exampleModalLabel"
+              aria-hidden="true"
             >
-              <div class="card card-body" style="width: 280px; height: 330px">
-                <form @submit.prevent class="my-5">
-                  <div class="mb-3">
-                    <label for="exampleInputEmail1" class="form-label"
-                      >Amount</label
-                    >
-                    <input
-                      type="number"
-                      class="form-control"
-                      placeholder="Enter Ammount"
-                      aria-describedby="emailHelp"
-                      v-model="withdrawAmount"
-                    />
+              <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">
+                      Withdraw Money
+                    </h5>
+                    <button
+                      type="button"
+                      class="btn-close"
+                      data-bs-dismiss="modal"
+                      aria-label="Close"
+                    ></button>
                   </div>
-                  <div class="text-center">
+                  <div class="modal-body d-flex justify-content-center">
+                    <form @submit.prevent class="">
+                      <div class="mb-3">
+                        <label for="exampleInputEmail1" class="form-label">
+                          Enter Amount to Withdraw</label
+                        >
+                        <input
+                          type="number"
+                          class="form-control"
+                          placeholder="Enter Ammount"
+                          aria-describedby="emailHelp"
+                          v-model="withdrawAmount"
+                        />
+                      </div>
+                    </form>
+                  </div>
+                  <div class="modal-footer d-flex justify-content-center">
+                    <button
+                      type="button"
+                      class="btn btn-danger"
+                      data-bs-dismiss="modal"
+                    >
+                      Cancel
+                    </button>
                     <button
                       type="submit"
-                      class="btn btn-dark w-50 mt-2"
+                      class="btn btn-warning"
+                      data-bs-dismiss="modal"
                       @click="WithdrawMoney"
                     >
                       Withdraw
                     </button>
                   </div>
-                </form>
+                </div>
               </div>
             </div>
           </div>
         </div>
+      </div>
+      <div class="col-8 mt-3">
+        <TableCustom
+          :tableData="tableData"
+          :fields="table_fields"
+          :isSelectionBox="true"
+          heading="Transactions History"
+          :isSelectable="true"
+          :isPagination="true"
+          emptyTableText="no transaction"
+        />
       </div>
     </div>
   </div>
@@ -211,7 +269,10 @@ export default {
       let payload = { depositAmount: this.depositAmount };
       http
         .DepositMoney(payload)
-        .then((data) => {
+        .then(async(data) => {
+          this.userDetails = await http.GetUserData({});
+          this.tableData = await http.GetUserTransactions();
+          this.currBal = this.userDetails.acc_bal;
           alert("deposit successfully !!!");
         })
         .catch((err) => {
@@ -223,7 +284,10 @@ export default {
       let payload = { withdrawAmount: this.withdrawAmount };
       http
         .WithdrawMoney(payload)
-        .then((data) => {
+        .then(async(data) => {
+          this.userDetails = await http.GetUserData({});
+          this.tableData = await http.GetUserTransactions();
+          this.currBal = this.userDetails.acc_bal;
           alert("withdraw successfully !!!");
         })
         .catch((err) => {
@@ -235,7 +299,8 @@ export default {
 </script>
 
 <style scoped>
-form {
-  width: 250px;
+.moneyBtn {
+  height: 60px !important;
+  width: 300px;
 }
 </style>

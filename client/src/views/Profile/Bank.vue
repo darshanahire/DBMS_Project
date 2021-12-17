@@ -59,26 +59,83 @@
         </div>
       </div>
     </div>
-    <hr>
-    <h6 class="text-success">List of Accounts</h6>
-    <hr>
-    <hr>
-    <h6 class="text-warning">Transaction History</h6>
-    <hr>
+    <h5 class="text-success my-3">List of Accounts</h5>
+    <TableCustom
+          :tableData="tableDataAccounts"
+          :fields="table_fieldsAccounts"
+          :isSelectionBox="true"
+          :isSelectable="true"
+          :isPagination="true"
+          emptyTableText="No Accounts Fount"
+        />
+        <hr>
+    <h5 class="text-warning my-3">Transaction History</h5>
+     <TableCustom
+          :tableData="tableData"
+          :fields="table_fields"
+          :isSelectionBox="true"
+          :isSelectable="true"
+          :isPagination="true"
+          emptyTableText="no transaction"
+        />
     </div>
   </div>
 </template>
 
 <script>
+import http from "@/services/http.vue";
+import TableCustom from "../../components/TableCustom.vue";
 export default {
   name: "BankProfile",
+  components: {
+    TableCustom,
+  },
+   async mounted() {
+    // this.managerDetails = await http.GetUserData({});
+    this.tableData = await http.GetUserTransactions();
+    
+    this.tableDataAccounts = await http.GetAllAcc();
+    
+  },
   data(){
     return{
 managerDetails:{
   username: 'Manager',
   email: 'manager@gmail.com',
   bank_no: 123456789
-}
+},
+ table_fields: [
+        { label: "Transaction ID", key: "tr_id" },
+        {
+          label: "Transaction Type",
+          key: "tr_type",
+        },
+        {
+          label: "Transaction Amount",
+          key: "tr_amount",
+        },
+        {
+          label: "Date",
+          key: "created_time",
+        },
+      ],
+      tableData: [],
+ table_fieldsAccounts: [
+        { label: "UserName", key: "username" },
+        {
+          label: "Account Number",
+          key: "acc_no",
+        },
+        {
+          label: "Email",
+          key: "email",
+        },
+        {
+          label: "Mobile",
+          key: "mobile_no",
+        },
+      ],
+      tableDataAccounts: [],
     }
   }
 };

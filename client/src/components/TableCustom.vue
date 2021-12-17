@@ -9,10 +9,12 @@
       <div class="card-body">
         <h4 class="card-title text-start">{{ heading }}</h4>
         <b-table
-          class="bg-white mt-3"
-          borderless
+          class="mt-3"
           stacked="md"
           hover
+          bordered
+          outlined
+          striped
           responsive
           sticky-header
           :fields="fields"
@@ -118,5 +120,6 @@ export default {
 .multiselect__option {
   width: 100% !important;
 }
+
 </style>
  

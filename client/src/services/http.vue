@@ -33,5 +33,9 @@ export default {
     let { data } = await axios.get(this.baseUrl + "/tr/user/all");
     return data;
   },
+  async GetAllAcc() {
+    let { data } = await axios.get(this.baseUrl + "/user/all");
+    return data;
+  },
 };
 </script>
