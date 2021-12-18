@@ -23,6 +23,13 @@ app.use("/api/user", userRoute);
 app.use("/api", dbRoutes);
 
 
+// for production use
+app.use(express.static("client/dist"));
+const path = require("path");
+app.get("*", (req, res) => {
+    res.sendFile(path.join(__dirname, "client", "dist", "index.html"))
+})
+
 
 app.listen(port, () => {
     console.log("server listen on port : ", port);

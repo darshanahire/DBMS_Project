@@ -83,7 +83,7 @@ export default {
           this.password = "";
         })
         .catch((err) => {
-          console.log(err);
+          alert("Auth Failed");
         });
     },
     loginBank() {
