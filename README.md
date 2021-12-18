@@ -1,6 +1,6 @@
 # DBMS_Project
 For Running this project you need Node js and MySQL database in localsetup
-###Steps :-
+# Steps :-
 1) Clone the repo
 2) install node_modules by running the npm i on main directory and also do this on client sub directory for client node_modules
 3) if client node_modules not install properly then delete node-sass and loadder dependency from package.json of client
