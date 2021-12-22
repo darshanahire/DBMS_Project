@@ -42,6 +42,73 @@
               Delete
             </button>
           </template>
+          <template #cell(View_profile)="row">
+            <button class="btn btn-success" data-bs-toggle="modal"
+                data-bs-target="#exampleModal2" @click="GetUserData(row.item)">
+              View Profile
+            </button>
+
+
+    <!-- "profile modal" -->
+      <div class="">
+          <div>
+            <div
+              class="modal fade"
+              id="exampleModal2"
+              tabindex="-1"
+              aria-labelledby="exampleModalLabel"
+              aria-hidden="true"
+            >
+              <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">
+                      User Profile
+                    </h5>
+                    <button
+                      type="button"
+                      class="btn-close"
+                      data-bs-dismiss="modal"
+                      aria-label="Close"
+                    ></button>
+                  </div>
+                  <div class="modal-body d-flex justify-content-center flex-column">
+                    <h5>User Name :{{userDetails.username}}</h5>
+                    <hr>
+                    <h6>Account No :{{userDetails.acc_no}}</h6>
+                    <hr>
+                    <h6>Account Balance :{{userDetails.acc_bal}}</h6>
+                    <hr>
+                    <h6>Mobile Number :{{userDetails.mobile_no}}</h6>
+                    <hr>
+                    <h6>Email :{{userDetails.email}}</h6>
+                  </div>
+                  <div class="modal-footer d-flex justify-content-center">
+                    <button
+                      type="button"
+                      class="btn btn-warning"
+                      data-bs-dismiss="modal"
+                    >
+                      Cancel
+                    </button>
+                    <button
+                      type="submit"
+                      class="btn btn-danger"
+                      data-bs-dismiss="modal"
+                      @click="deleteUser(row.item)"
+                    >
+                      Delete User
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+
+          </template>
         </b-table>
         <b-pagination
           v-if="isPagination"
@@ -54,7 +121,10 @@
         ></b-pagination>
       </div>
     </div>
+
   </div>
+
+  
 </template>
 
 <script>
@@ -78,6 +148,7 @@ export default {
       keyword: "",
       selectedRows: [],
       currentPage: 1,
+      userDetails: {},
     };
   },
   methods: {
@@ -102,6 +173,18 @@ export default {
         })
         .catch((err) => {
           alert("user deletion failed");
+        });
+    },
+    async GetUserData(user) {
+      http
+        .GetUserData(user)
+        .then((data) => {
+          console.log(data);
+          
+          this.userDetails = data;
+        })
+        .catch((err) => {
+          alert("User Not Found");
         });
     },
   },

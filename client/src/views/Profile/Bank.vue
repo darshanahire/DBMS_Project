@@ -136,6 +136,10 @@ export default {
           label: "Delete",
           key: "delete",
         },
+        {
+          label: "View Profile",
+          key: "View_profile",
+        },
       ],
       tableDataAccounts: [],
     };

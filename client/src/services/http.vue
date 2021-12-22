@@ -25,6 +25,11 @@ export default {
     let { data } = await axios.post(this.baseUrl + "/tr/withdraw", payload);
     return data;
   },
+  async SendMoney(payload) {
+    let { data } = await axios.post(this.baseUrl + "/tr/transfer", payload);
+    console.log("http data",data);
+    return data;
+  },
   async GetCurrBal() {
     let { data } = await axios.get(this.baseUrl + "/tr/current-balance");
     return data;

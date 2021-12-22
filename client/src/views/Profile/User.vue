@@ -67,6 +67,7 @@
           align-items-center
         "
       >
+        <!-- Deposite Modal -->
         <div class="">
           <div>
             <button
@@ -137,6 +138,8 @@
             </div>
           </div>
         </div>
+
+        <!-- Withdrow Modal -->
         <div class="">
           <div>
             <div>
@@ -150,7 +153,6 @@
               </button>
             </div>
 
-            <!-- Modal -->
             <div
               class="modal fade"
               id="exampleModal1"
@@ -209,6 +211,92 @@
             </div>
           </div>
         </div>
+
+        <!-- Send Modal -->
+        <div class="">
+          <div>
+            <div>
+              <button
+                type="button"
+                class="btn btn-success moneyBtn"
+                data-bs-toggle="modal"
+                data-bs-target="#exampleModal2"
+              >
+                Send Money
+              </button>
+            </div>
+
+            <div
+              class="modal fade"
+              id="exampleModal2"
+              tabindex="-1"
+              aria-labelledby="exampleModalLabel"
+              aria-hidden="true"
+            >
+              <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">
+                      Send Money
+                    </h5>
+                    <button
+                      type="button"
+                      class="btn-close"
+                      data-bs-dismiss="modal"
+                      aria-label="Close"
+                    ></button>
+                  </div>
+                  <div class="modal-body d-flex justify-content-center">
+                    <form @submit.prevent class="">
+                      <div class="mb-3">
+                        <label for="exampleInputEmail1" class="form-label">
+                          Enter Username of Friend</label
+                        >
+                        <input
+                          type="text"
+                          class="form-control"
+                          placeholder="Enter Username of Friend"
+                          aria-describedby="emailHelp"
+                          v-model="userToTransfer"
+                        />
+                      </div>
+                      <div class="mb-3">
+                        <label for="exampleInputEmail1" class="form-label">
+                          Enter Ammount To Send</label
+                        >
+                        <input
+                          type="number"
+                          class="form-control"
+                          placeholder="Enter Ammount To Send"
+                          aria-describedby="emailHelp"
+                          v-model="transferAmount"
+                        />
+                      </div>
+                    </form>
+                  </div>
+                  <div class="modal-footer d-flex justify-content-center">
+                    <button
+                      type="button"
+                      class="btn btn-danger"
+                      data-bs-dismiss="modal"
+                    >
+                      Cancel
+                    </button>
+                    <button
+                      type="submit"
+                      class="btn btn-success"
+                      data-bs-dismiss="modal"
+                      @click="SendMoney"
+                    >
+                      Send
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
       </div>
       <div class="col-8 mt-3">
         <TableCustom
@@ -250,6 +338,8 @@ export default {
       withdrawAmount: 0,
       password: "",
       currBal: 0,
+      userToTransfer: "",
+      transferAmount: 0,
 
       table_fields: [
         { label: "Transaction ID", key: "tr_id" },
@@ -294,6 +384,22 @@ export default {
           this.tableData = await http.GetUserTransactions();
           this.currBal = this.userDetails.acc_bal;
           alert("withdraw successfully !!!");
+        })
+        .catch((err) => {
+          alert("Insufficient Balance");
+        });
+    },
+
+    SendMoney() {      
+      let payload = { userToTransfer:this.userToTransfer, transferAmount:this.transferAmount };
+      
+      http
+        .SendMoney(payload)
+        .then(async (data) => {
+          this.userDetails = await http.GetUserData({});
+          this.tableData = await http.GetUserTransactions();
+          this.currBal = this.userDetails.acc_bal;
+          alert(`Rs. ${ this.transferAmount} Sent Successfuly`);
         })
         .catch((err) => {
           alert("Insufficient Balance");
